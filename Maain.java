@@ -1,32 +1,37 @@
-import java.beans.IntrospectionException;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class Maain {
     public static void main(String[] args) throws IOException {
         ArrayList<PakUni> list = new ArrayList<>();
-        MyHashtable<String , Object> uni = new MyHashtable<>(100);
+        MyHashtable<String , PakUni> uni = new MyHashtable<>(100);
         // get file from location
         File csvfile = new File("Pakuniversities.csv");
         // read csv file using buffer reader
-        BufferedReader bf = new BufferedReader(new FileReader(csvfile));
-        String line = bf.readLine();
-        
-        while (line!=null) {
-String [] attributies = line.split(",");
+        BufferedReader bf = new BufferedReader(new FileReader(csvfile)); 
+
+        bf.readLine();
+        String line =" ";
+ while ((line=bf.readLine())!=null) {
+String  attributies[] = line.split(",");
+System.out.println(Arrays.toString(attributies));
 String name = attributies[0];
 String Wrank = attributies[1];
 String Arank = attributies[2];
 String prank  = attributies[3];
-String loc = attributies[4];
-int   no_pub =Integer.parseInt( attributies[5]);
-// int no_pub =12;
-// PakUni pk = new PakUni(name, Wrank, Arank, prank, loc, no_pub);
-list.add(new PakUni(name, Wrank, Arank, prank, loc, no_pub));
+int   no_pub =Integer.parseInt(attributies[4]);
+String loc = attributies[5];
+PakUni pak = new PakUni(name, Wrank, Arank, prank, no_pub, loc);
+// add data into arraylist 
+list.add(pak);
+// System.out.println(pak.toString());
+line=bf.readLine();
 }
 System.out.println("Data store in the university is successful");
   
@@ -59,7 +64,7 @@ System.out.println("Data store in the university is successful");
    uni.put("HAUN", list.get(25));//Hamdard University
    uni.put("HAZU", list.get(26));//Hazara University
    uni.put("HITU", list.get(27));//HITEC University 
-   uni.put("IUPA", list.get(28));//Indus University; Pakistan
+   uni.put("IUPA", list.get(28));//Indus University Pakistan
    uni.put("ITUN", list.get(29));//Information Technology University
    uni.put("IBAU", list.get(30));//Institute of Business Administration
    uni.put("ISTE", list.get(31));//Institute of Space Technology
@@ -133,6 +138,6 @@ System.out.println("Data store in the university is successful");
    uni.put("ZIAU", list.get(99));//Ziauddin University
    
    
-   
+   bf.close();
 }
 }

@@ -5,21 +5,21 @@ public class PakUni {
   String Word_rank;
   String Asia_rank;
   String Pak_rank;
-  String location;
-  int num_of_publish;
+  String address;
+  int  num_of_publish;
 
-   PakUni(String name , String wrank , String Arank , String Prank , String loc , int pub){
+   PakUni(String name , String wrank , String Arank , String Prank  , int  pub , String loc){
     this.name=name;
     this.Word_rank=wrank;
     this.Asia_rank=Arank;
     this.Pak_rank=Prank;
-    this.location=loc;
+    this.address=loc;
     this.num_of_publish=pub;
 
    }
    // convert object to String
     public String toString (){
-        return name + " "+ Word_rank+" "+Asia_rank+" "+Pak_rank+" "+location+" "+num_of_publish+" ";
+        return name + " "+ Word_rank+" "+Asia_rank+" "+Pak_rank+" "+address+" "+num_of_publish+" ";
     }
     //  getter to set the value 
     public String getName() {
@@ -36,8 +36,8 @@ public class PakUni {
         return Pak_rank;
     }
     
-    public String getLocation() {
-        return location;
+    public String getaddress() {
+        return address;
     }
 
     public int getNum_of_publish() {
