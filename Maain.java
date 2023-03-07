@@ -190,6 +190,7 @@ Arrays.sort(PubData ,Comparator.comparingInt(a -> (int)a[1]));
 
 System.out.println("Data sorted is complete");
 st.Disply();
+// take data from hash and store it into array to easily fatchd it
 int m =0;
 Object [][] sortRank = new Object[list.size()][2];
 for (Entry<String , PakUni> f : uni.entrySet()) {
@@ -197,10 +198,23 @@ for (Entry<String , PakUni> f : uni.entrySet()) {
     sortRank[m][1]=f.getValue();
     m++;
 }
+// fatched data to sort it to store in the stack
 for(int j=0;j<sortRank.length;j++) {
     PakUni obj = (PakUni) sortRank[j][1];
-    sortRank[j][1]= obj.getPak_rank();
+    // Remove / between the Pakistan Ranking 
+    sortRank[j][1]=Integer.parseInt(obj.getPak_rank().substring(0,obj.getPak_rank().length()-6));
+
 }
+
 // sorted the university based on the  ranking
-// Arrays.sort(sortRank , Comparator.comparingInt());
-}}
+ Arrays.sort(sortRank , Comparator.comparingInt(a -> (int)a[1]) );
+ System.out.println("pakistan ranking is sorted");
+// add sort data in the stack based on the Pak ranking
+ MyStack sortRanking = new MyStack<>();
+for (int j = 0; j < sortRank.length; j++) {
+    sortRanking.push(sortRank[j][0]);
+}
+
+}
+   
+}
