@@ -8,7 +8,7 @@ public class PakUni {
   String address;
   int  num_of_publish;
 
-   PakUni(String name , String wrank , String Arank , String Prank  , int  pub , String loc){
+   PakUni(String name , String wrank , String Arank , String Prank   , String loc,int  pub ){
     this.name=name;
     this.Word_rank=wrank;
     this.Asia_rank=Arank;

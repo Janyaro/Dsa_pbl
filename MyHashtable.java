@@ -72,4 +72,10 @@ public class MyHashtable<K, V> {
             this.value = value;
         }
     }
+
+    public java.util.Map.Entry<String, PakUni>[] entryset() {
+        return null;
+    }
+
+   
 }

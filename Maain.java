@@ -3,16 +3,43 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.rmi.server.ObjID;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.Stack;
+import java.util.Map.Entry;
 
 
 public class Maain {
+    public static void SortPublication(Hashtable<String, PakUni> uni , ArrayList<PakUni> list) {
+        int i=0;
+        // Saved value and key in seprate array 
+         Object [][] PubData = new Object [list.size()][2];
+         for (Entry<String , PakUni> e :   ( uni.entrySet())) {
+            PubData[i][0] =e.getValue();
+            PubData[i][1]=e.getKey() ;
+            i++;
+         }
+         // get published in the stack
+         for(int j=0;j<PubData.length;j++) {
+             Object obj =  PubData[j][1];
+             PubData[j][1]=((PakUni) obj).getNum_of_publish();
+         }
+         // sort it data
+         Arrays.sort(PubData);
+         Stack st = new Stack<>();
+         for (int index = PubData.length; index >= 0; index--) {
+             st.push(PubData[index][0]);
+         }
+    }
     public static void main(String[] args) throws IOException {
-        ArrayList<PakUni> list = new ArrayList<>();
-        MyHashtable<String , PakUni> uni = new MyHashtable<>(100);
+      ArrayList<PakUni> list = new ArrayList<>();
+        Hashtable<String , PakUni> uni = new Hashtable<>(100);
         // get file from location
-        File csvfile = new File("Pakuniversities.csv");
+        File csvfile = new File("pak unis.csv");
         // read csv file using buffer reader
         BufferedReader bf = new BufferedReader(new FileReader(csvfile)); 
 
@@ -20,18 +47,18 @@ public class Maain {
         String line =" ";
  while ((line=bf.readLine())!=null) {
 String  attributies[] = line.split(",");
-System.out.println(Arrays.toString(attributies));
+// System.out.println(Arrays.toString(attributies));
 String name = attributies[0];
 String Wrank = attributies[1];
 String Arank = attributies[2];
 String prank  = attributies[3];
-int   no_pub =Integer.parseInt(attributies[4]);
-String loc = attributies[5];
-PakUni pak = new PakUni(name, Wrank, Arank, prank, no_pub, loc);
+String loc = attributies[4];
+int   no_pub =Integer.parseInt(attributies[5]);
+
+PakUni pak = new PakUni(name, Wrank, Arank, prank, loc ,no_pub);
 // add data into arraylist 
 list.add(pak);
 // System.out.println(pak.toString());
-line=bf.readLine();
 }
 System.out.println("Data store in the university is successful");
   
@@ -136,8 +163,44 @@ System.out.println("Data store in the university is successful");
    uni.put("UVAS", list.get(97));//University of Veterinary and Animal Sciences
    uni.put("UWAH", list.get(98));//University of Wah
    uni.put("ZIAU", list.get(99));//Ziauddin University
+   System.out.println("Data savd hash table is successful");
    
-   
-   bf.close();
+   bf.close();	
+int i=0;
+// Saved value and key in seprate array 
+ Object PubData[][] = new Object [list.size()][2];
+ for (Entry<String , PakUni> e :    uni.entrySet()) {
+    PubData[i][0] =e.getKey();
+    PubData[i][1]=e.getValue() ;
+    i++;
+ }
+ // get published in the stack
+ for(int j=0;j<PubData.length;j++) {
+     PakUni obj = (PakUni) PubData[j][1];
+     PubData[j][1]= obj.getNum_of_publish();
+ }
+ // sort it data
+Arrays.sort(PubData ,Comparator.comparingInt(a -> (int)a[1]));
+ 
+ MyStack st = new MyStack<>();
+ for (int index = PubData.length-1; index >= 0; index--) {
+     st.push(PubData[index][0]);
+
 }
+
+System.out.println("Data sorted is complete");
+st.Disply();
+int m =0;
+Object [][] sortRank = new Object[list.size()][2];
+for (Entry<String , PakUni> f : uni.entrySet()) {
+    sortRank[m][0]=f.getKey();
+    sortRank[m][1]=f.getValue();
+    m++;
 }
+for(int j=0;j<sortRank.length;j++) {
+    PakUni obj = (PakUni) sortRank[j][1];
+    sortRank[j][1]= obj.getPak_rank();
+}
+// sorted the university based on the  ranking
+// Arrays.sort(sortRank , Comparator.comparingInt());
+}}
