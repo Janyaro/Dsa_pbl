@@ -3,13 +3,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.rmi.server.ObjID;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Hashtable;
-import java.util.Map;
-import java.util.Stack;
+
 import java.util.Map.Entry;
 
 
@@ -30,7 +29,7 @@ public class Maain {
          }
          // sort it data
          Arrays.sort(PubData);
-         Stack st = new Stack<>();
+         MyStack st = new MyStack<>();
          for (int index = PubData.length; index >= 0; index--) {
              st.push(PubData[index][0]);
          }
@@ -189,7 +188,7 @@ Arrays.sort(PubData ,Comparator.comparingInt(a -> (int)a[1]));
 }
 
 System.out.println("Data sorted is complete");
-st.Disply();
+// st.Disply();
 // take data from hash and store it into array to easily fatchd it
 int m =0;
 Object [][] sortRank = new Object[list.size()][2];
@@ -214,7 +213,11 @@ for(int j=0;j<sortRank.length;j++) {
 for (int j = 0; j < sortRank.length; j++) {
     sortRanking.push(sortRank[j][0]);
 }
-
+// problem 1 
+problem1 p1 = new problem1();
+// p1.search4keyWord(uni);
+Problem2 p2  = new Problem2();
+p2.Top5Uni(st);
 }
    
 }

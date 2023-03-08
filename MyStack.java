@@ -56,4 +56,10 @@ public class MyStack<t> implements stack{
             dis=dis.next;
         }
     }
+    public void Run(String key) {
+        Node ri= top;
+        while(ri!=null){
+            if()
+        }
+    }
 }
