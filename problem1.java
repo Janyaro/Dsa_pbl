@@ -17,8 +17,8 @@ public class problem1 {
     
       
     
-    if(uni.containsKey(key) && key.length()==4 ){
-      PakUni value = uni.get(key);
+    if(uni.containsKey(key.toUpperCase()) && key.length()==4 ){
+      PakUni value = uni.get(key.toUpperCase());
     
       System.out.println("Uni_Name  : "+value.getName() );
       System.out.println("Word Ranking  : "+value.getWord_rank() );
@@ -27,8 +27,8 @@ public class problem1 {
       System.out.println("Address   : "+value.getaddress() );
       System.out.println("Publication   : "+value.getNum_of_publish() );
     }
-    
+    else{
   System.out.println("Data not contain in the hash table");
-}
+}}
     }
 

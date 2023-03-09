@@ -1,65 +1,78 @@
-interface stack{
-    public void push(Object obj);
-    public Object pop();
-    public Object peek();
-    int size();
-}
-class Node<t>{
-    t data;
-    Node next;
-    Node(t data){
-this.data = data;
-    }
-    Node (t data , Node next){
-        this.data = data;
-        this.next = next;
-    }
-}
-public class MyStack<t> implements stack{
-     Node top;
-     int size;
-     MyStack(){
-        top=null;
-     }
-    @Override
-    public void push(Object obj) {
-        top = new Node( obj , top);
+import java.util.EmptyStackException;
+
+public class MyStack<T> {
+
+    private Node<T> top;
+    private int size;
+
+    // Constructor to initialize the stack
+    public MyStack() {
+        top = null;
+        size = 0;
     }
 
-    @Override
-    public Object pop() {
-       Object obj = top.data;
-       obj = null;
-       --size;
-       return obj;
-    }
+    // Node class to define the structure of each element in the stack
+    private static class Node<T> {
+        private T data;
+        private Node<T> next;
 
-    @Override
-    public Object peek() {
-    return top.data;
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-    
-    // IsEmpty method 
-    public boolean IsEmpty() {
-        return size==0;
-    }
-    // Disply all the data 
-    public void Disply() {
-        Node dis = top;
-        while (dis!=null) {
-            System.out.println(dis.data);
-            dis=dis.next;
+        public Node(T data) {
+            this.data = data;
+            this.next = null;
         }
     }
-    public void Run(String key) {
-        Node ri= top;
-        while(ri!=null){
-            if()
+
+    // Push method to add an element to the top of the stack
+    public void push(T data) {
+        Node<T> newNode = new Node<>(data);
+        newNode.next = top;
+        top = newNode;
+        size++;
+    }
+
+    // Pop method to remove and return the element at the top of the stack
+    public T pop() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        T data = top.data;
+        top = top.next;
+        size--;
+        return data;
+    }
+
+    // Peek method to return the element at the top of the stack without removing it
+    public T peek() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return top.data;
+    }
+
+    // Method to check if the stack is empty
+    public boolean isEmpty() {
+        return top == null;
+    }
+
+    public MyStack<T> duplicate() {
+        MyStack<T> copy = new MyStack<>();
+        Node<T> current = top;
+        while (current != null) {
+            copy.push(current.data);
+            current = current.next;
+        }
+        return copy;
+    }
+    
+    // Method to return the size of the stack
+    public int size() {
+        return size;
+    } 
+    public void Disply() {
+        Node p  = top;
+        while (p!=null) {
+            System.out.println(p.data);
+            p=p.next;
         }
     }
 }

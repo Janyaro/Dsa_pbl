@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Hashtable;
-
+import java.util.Scanner;
 import java.util.Map.Entry;
+
+import javax.xml.transform.Source;
 
 
 public class Maain {
@@ -62,23 +64,23 @@ list.add(pak);
 System.out.println("Data store in the university is successful");
   
 // add university data in hash table
-   uni.put("AbUn", list.get(0)); // Abasyn University
-   uni.put( "Awku",list.get(1)); // Abdul walid khan Uni
-   uni.put("Agku", list.get(2));//Agha khan uni
-   uni.put("Airu", list.get(3)); //Air uni
-   uni.put("Baku", list.get(4));//Bacha khan uni
-   uni.put("Bazu", list.get(5));//bahauddin zakariya uni
-   uni.put("bahu", list.get(6));//bahria uni
-   uni.put("Buit", list.get(7));//balochistan uni of inf and tech 
-   uni.put("Bamu", list.get(8));// baqai medical uni
-   uni.put("Benu", list.get(9));//Beaconhouse national uni
+   uni.put("ABUN", list.get(0)); // Abasyn University
+   uni.put( "AWKU",list.get(1)); // Abdul walid khan Uni
+   uni.put("AGKU", list.get(2));//Agha khan uni
+   uni.put("AIRU", list.get(3)); //Air uni
+   uni.put("BAKU", list.get(4));//Bacha khan uni
+   uni.put("BAZU", list.get(5));//bahauddin zakariya uni
+   uni.put("bAHU", list.get(6));//bahria uni
+   uni.put("BUIT", list.get(7));//balochistan uni of inf and tech 
+   uni.put("BAMU", list.get(8));// baqai medical uni
+   uni.put("BENU", list.get(9));//Beaconhouse national uni
    uni.put("CECU", list.get(10));// cecos uni 
-   uni.put("Coit", list.get(11));//comsts istitute of inf tech
-   uni.put("Duet", list.get(12));//dawood uni of eng tech
+   uni.put("COIT", list.get(11));//comsts istitute of inf tech
+   uni.put("DUET", list.get(12));//dawood uni of eng tech
    uni.put("DUHS", list.get(13));//dow uni of health scince
    uni.put("FJMU", list.get(14));//fatima jannah medical university
    uni.put("FJWU", list.get(15));//fatima jannah woman uni 
-   uni.put("Fuas", list.get(16));//faderal urdu uni of art science and tech
+   uni.put("FUAS", list.get(16));//faderal urdu uni of art science and tech
    uni.put("FOCC", list.get(17));//Forman Christian College
    uni.put("FOUI", list.get(18));//Foundation University Islamabad
    uni.put("GIKT", list.get(19));//Ghulam Ishaq Khan Institute of Engineering Sciences and Technology 
@@ -170,17 +172,17 @@ int i=0;
  Object PubData[][] = new Object [list.size()][2];
  for (Entry<String , PakUni> e :    uni.entrySet()) {
     PubData[i][0] =e.getKey();
-    PubData[i][1]=e.getValue() ;
+    PubData[i][1]=e.getValue();
     i++;
  }
- // get published in the stack
+ // get published value from the hashtable 
  for(int j=0;j<PubData.length;j++) {
      PakUni obj = (PakUni) PubData[j][1];
      PubData[j][1]= obj.getNum_of_publish();
  }
  // sort it data
 Arrays.sort(PubData ,Comparator.comparingInt(a -> (int)a[1]));
- 
+ // push data into stack 
  MyStack st = new MyStack<>();
  for (int index = PubData.length-1; index >= 0; index--) {
      st.push(PubData[index][0]);
@@ -192,6 +194,8 @@ System.out.println("Data sorted is complete");
 // take data from hash and store it into array to easily fatchd it
 int m =0;
 Object [][] sortRank = new Object[list.size()][2];
+// to iterate the hash table 
+// entryset() make the set of hash ang it give the hash view of hash table
 for (Entry<String , PakUni> f : uni.entrySet()) {
     sortRank[m][0]=f.getKey();
     sortRank[m][1]=f.getValue();
@@ -213,11 +217,34 @@ for(int j=0;j<sortRank.length;j++) {
 for (int j = 0; j < sortRank.length; j++) {
     sortRanking.push(sortRank[j][0]);
 }
+
 // problem 1 
 problem1 p1 = new problem1();
-// p1.search4keyWord(uni);
-Problem2 p2  = new Problem2();
-p2.Top5Uni(st);
-}
+// problem 2 
+Problem2 p2 = new Problem2();
+Scanner sc = new Scanner(System.in);
+   System.out.println("1 : To See top 5 , 25 ");
+   System.out.println("2 : To See Bottom 5 ");
+   System.out.println("3 : To See 50 percntile university ");
+   System.out.println("Bottom 5 university ");
+   int option = sc.nextInt();
+   switch (option) {
+    case 1:
+        p1.search4keyWord(uni);
+        break;
    
-}
+    case 2:
+    // top 5 , 25 university based on the pakistan ranking
+    p2.Top5Uni(sortRanking, uni);
+        break;
+   
+    case 3:
+        p2.Uni50thpercentile(sortRanking, uni);
+        break;
+   case 4 : 
+   p2.Bottom5(sortRanking, uni);
+   break;
+    default:
+        break;
+   }
+}}
