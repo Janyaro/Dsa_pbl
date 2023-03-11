@@ -75,4 +75,6 @@ public class MyStack<T> {
             p=p.next;
         }
     }
+     
+    // reverse stack 
 }

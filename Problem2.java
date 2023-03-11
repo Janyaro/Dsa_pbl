@@ -12,7 +12,11 @@ public class Problem2{
 
     MyStack<String > temp = mystack.duplicate();
     // System.out.println(temp.size());
-
+    System.out.println();
+    System.out.println("************************************"); 
+    System.out.println("The top "+value + "  Universities are");
+    System.out.println("************************************");
+    System.out.println();
     for (int i = 1; i <= uni.size(); i++) {
         // give the reverse condition because we want only 5 university
         if(i>value){
@@ -38,13 +42,18 @@ public class Problem2{
 // System.out.println(temp.size());
 
 }
-
+// end of
 // bottom 5 university based on publication 
 public void Bottom5(MyStack <String > stack , Hashtable<String, PakUni> uni) {
     // data doesnot loss in the orginal stack to resolve this problem make a deplicate stack
     MyStack<String > clone = stack.duplicate();
     // make a stake if which the value is revrse because we want bottom university 
    MyStack<String > reverse = new MyStack<>();
+   System.out.println();
+   System.out.println("************************************");
+   System.out.println("The 5 Bottom Universities are ");
+   System.out.println("************************************");
+   System.out.println();
    for (int i = 0; i < stack.size(); i++) {
     reverse.push(clone.pop());
    }
@@ -82,7 +91,9 @@ public void Bottom5(MyStack <String > stack , Hashtable<String, PakUni> uni) {
         String topuni1 = (String) temp2.pop();
 //    System.out.println(temp2.size());
          PakUni obj =uni.get(topuni1);
+         System.out.println("************************************");
          System.out.println("The 50 percentile university is ");
+         System.out.println("************************************");
          System.out.println();
          System.out.println("Name  "+ obj.getName());
          System.out.println("Word Ranking  : "+obj.getWord_rank() );

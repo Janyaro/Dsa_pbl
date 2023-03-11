@@ -11,7 +11,7 @@ import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.Map.Entry;
 
-import javax.xml.transform.Source;
+
 
 public class Maain {
     public static void SortPublication(Hashtable<String, PakUni> uni, ArrayList<PakUni> list) {
@@ -136,10 +136,10 @@ public class Maain {
         uni.put("SBWU", list.get(69));// Shaheed Benazir Bhutto Women University
         uni.put("SZST", list.get(70));// Shaheed Zulfiqar Ali Bhutto Institute of Science and
         uni.put("SIND", list.get(71));// Sindh Agriculture University
-        uni.put("SWIU", list.get(72));// Sindh Madresatul Islam University
+        uni.put("SMIU", list.get(72));// Sindh Madresatul Islam University
         uni.put("SSUE", list.get(73));// Sir Syed University of Engineering and Technology
         uni.put("SIBA", list.get(74));// Sukkur Institute of Business Administration
-        uni.put("UAFA", list.get(75));// University of Agriculture; Faisalabad
+        uni.put("UAFA", list.get(75));// University of Agriculture Faisalabad
         uni.put("UAPE", list.get(76));// University of Agriculture; Peshawar
         uni.put("UAJK", list.get(77));// University of Azad Jammu and Kashmir
         uni.put("UBAL", list.get(78));// University of Balochistan
@@ -219,51 +219,62 @@ public class Maain {
         for (int j = 0; j < sortRank.length; j++) {
             sortRanking.push(sortRank[j][0]);
         }
-       problem3 p3 = new problem3();
-       p3.Best_worstUni(uni);
+    
         // problem 1
         problem1 p1 = new problem1();
         // problem 2
         Problem2 p2 = new Problem2();
+        // problem 3 
+        problem3 p3 = new problem3();
+        try {
+            
         
-        // Scanner sc = new Scanner(System.in);
-        // System.out.println("1 : search university name based on 4 key words  ");
-        // System.out.println("2 : To See Bottom 5 / top 5 , top 25 ");
-        // System.out.println("3 : To See 50 percntile university ");
-        // int option = sc.nextInt();
-        // switch (option) {
-        //     case 1:
-        //         p1.search4keyWord(uni);
-        //         break;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("*************************************************");
+        System.out.println("1 : search university name based on 4 key words  ");
+        System.out.println("2 : To See Bottom 5 / top 5 , top 25 ");
+        System.out.println("3 : To See 50 percntile university ");
+        System.out.println("4 : See The top and bottom university of every provience According to Publication ");
+        System.out.println("*************************************************");
+        int option = sc.nextInt();
+        switch (option) {
+            case 1:
+                p1.search4keyWord(uni);
+                break;
 
-        //     case 2:
-        //     System.out.println();
-        //     System.out.println("1 : To See top 5 , 25 ");
-        //     System.out.println("2 : To See Bottom 5 ");
-        //     int option1 =sc.nextInt();
-        //     switch (option1) {
-        //         case 1:
-        //         // top 5 , 25 university based on the pakistan ranking
-                
-        //             p2.Top5Uni(sortRanking, uni);
-        //             break;
-        //         case 2:
-        //         // bottom 5 university based on the pakistan ranking 
-        //             p2.Bottom5(sortRanking, uni);
-        //             break;
+            case 2:
+            System.out.println();
+            System.out.println("***********************");
+            System.out.println("1 : To See top 5 , 25 ");
+            System.out.println("2 : To See Bottom 5 ");
+            System.out.println("***********************");
+            int option1 =sc.nextInt();
+            switch (option1) {
+                case 1:
+                // top 5 , 25 university based on the pakistan ranking
+                    p2.Top5Uni(sortRanking, uni);
+                    break;
+                case 2:
+                // bottom 5 university based on the pakistan ranking 
+                    p2.Bottom5(sortRanking, uni);
+                    break;
             
-        //         default:
-        //         System.out.println("Choose the above option");
-        //             break;
-        //     }
-                
-
-        //     case 3:
-        //         p2.Uni50thpercentile(sortRanking, uni);
-        //         break;
-            
-        //     default:
-        //         break;
-        // }
+                default:
+                System.out.println("Choose the above option");
+                    break;
+            }
+            break;
+            case 3:
+                p2.Uni50thpercentile(sortRanking, uni);
+                break;
+            case 4 :
+            p3.Best_worstUni(uni);
+            default:
+            System.out.println("Choose the above option ");
+                break;
+        }
+    } catch (Exception e) {
+        System.out.println("Put the correct Input ");
+    }
     }
 }
