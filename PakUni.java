@@ -7,7 +7,10 @@ public class PakUni {
   String Pak_rank;
   String address;
   int  num_of_publish;
+   
+  PakUni(){
 
+   }
    PakUni(String name , String wrank , String Arank , String Prank   , String loc,int  pub ){
     this.name=name;
     this.Word_rank=wrank;

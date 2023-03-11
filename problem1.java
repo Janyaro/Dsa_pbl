@@ -29,6 +29,10 @@ public class problem1 {
     }
     else{
   System.out.println("Data not contain in the hash table");
-}}
+}
+sc.close();
+}
+
+
     }
 

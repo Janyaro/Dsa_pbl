@@ -80,7 +80,7 @@ public void Bottom5(MyStack <String > stack , Hashtable<String, PakUni> uni) {
         // System.out.println(temp2.size());
         
         String topuni1 = (String) temp2.pop();
-   System.out.println(temp2.size());
+//    System.out.println(temp2.size());
          PakUni obj =uni.get(topuni1);
          System.out.println("The 50 percentile university is ");
          System.out.println();
